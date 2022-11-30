@@ -16,13 +16,26 @@ Which tools are we using in amazon web services?
 * Cognito
 * API Gateway
 
-Our architecture is this.
+## Our architecture is this.
 
 We shall upload our game build to Gamelift. We will then create a fleet that will run the build in a server.
 
 We will then create two lambda function, one to start a game session and one to authorize users using cognito.
-* Our start-game-session function will find a game session to create a new player session or otherwise create a new game session on the fleet. Our team must grab the fleet ID from the fleet that is running our build in Gamelift so that we may be able to look in the fleet and either grab the existing game session or create a new game session.
-* Our authorizer-user function will utilize AWS cognito to check if the credentials (username and password) are correct. Our team must grab the cognito ID which we will have once we create the cognito user pool and client in AWS. Once we have the id, we can check in the cognito with our lambda function.
 
+Start game session lambda function:
+* Our start-game-session function will find a game session to create a new player session or otherwise create a new game session on the fleet. Our team must grab the fleet ID from the fleet that is running our build in Gamelift so that we may be able to look in the fleet and either grab the existing game session or create a new game session.
+* Our team must also add an IAM policy.
+
+Cognito login authorizer lambda function:
+* Our authorizer-user function will utilize AWS cognito to check if the credentials (username and password) are correct. Our team must grab the cognito ID which we will have once we create the cognito user pool and client in AWS. Once we have the id, we can check in the cognito with our lambda function.
+* Our team must also add an IAM policy.
+
+Once our lambda functions are written, deployed and tested, our team can start creating a user pool in AWS Cognito and the api in AWS API Gateway.
+
+Creating our Cognito user pool.
+
+This is easily done. Our team enables username, email, and password to sign up and sign in to the user pool. When we create our user pool, we then must provide a domain name and callback and sign out URLS. For our URLs we shall just use `https://aws.amazon.com` as our URL. For our domain name, AWS let's us use an Amazon Cognito domain with a domain prefix which we can enter.
+
+Now our user pool is prepared, and it has a hosted UI which we can use to sign up. The hosted UI is a simple login form with a sign up option. We can create a user here. Once the user is created, we can check that the user is created in the user pool settings.
 
 
