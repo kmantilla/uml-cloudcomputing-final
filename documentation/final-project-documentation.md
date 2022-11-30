@@ -28,6 +28,8 @@ Alas, our game build will be created and compiled in Unreal Engine. We will buil
 
 How so? In our video game, we must create a login portal that will communicate to our API.
 
+The python code is given by Amazon.
+
 
 
 ## Our architecture is this.
