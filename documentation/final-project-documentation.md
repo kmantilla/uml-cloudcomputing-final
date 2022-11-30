@@ -6,7 +6,7 @@ Students are:
 * Khiel Mantilla
 * Martin Marwad
 * Jose Ramos
-* ok
+* Matt Kostandin
 
 Our topic problem is to implement a multiplayer game session. We decide to use unreal engine because it complements Amazon Web Service nicely.
 
