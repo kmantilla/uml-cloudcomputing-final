@@ -24,6 +24,10 @@ With a `GET` request sent to the API, if the idToken is correct and valid and au
 
 A player can sign up as a user in our Cognito sign up page, and will be able to connect to a game server upon request via game client. Our game client will send a request to our API, set up in by AWS API Gateway, which uses two lambda functions which we will create, one to check for game sessions and one to authorize user login.
 
+Alas, our game build will be created and compiled in Unreal Engine. We will build a Windows Server build created in Unreal Engine, such that we can upload our build to Gamelift. Thankfully, Gamelift and Unreal Engine builds are complementary in that they work together seamlessly. We can then build an executable file such that a Windows user can run it and connect to the game server. This is our client.
+
+How so? In our video game, we must create a login portal that will communicate to our API.
+
 
 
 ## Our architecture is this.
