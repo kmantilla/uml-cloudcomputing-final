@@ -1,0 +1,23 @@
+////////////////////// Option 1 (NOT FULLY WORKING) ////////////////////////
+
+zip function.zip GameLiftUnreal-StartGameLiftSession.py
+
+aws iam create-role --role-name Gamelift-StartGameSession-role --assume-role-policy-document file://GameLiftUnreal-StartGameLiftSession.json
+
+aws lambda create-function --function-name Gamelift-StartGameSession \                             
+--zip-file fileb://function.zip --handler GameLiftUnreal-StartGameLiftSession.lambda_handler --runtime python3.8 \
+--role arn:aws:iam::620339869704:role/Gamelift-StartGameSession-role
+
+
+////////////////////// Option 2 ////////////////////////
+
+zip function.zip GameLiftUnreal-StartGameLiftSession.py
+
+aws iam create-policy --policy-name Gamelift-StartSession-policy --policy-document file://GameLiftUnreal-StartGameLiftSession.json
+
+aws iam create-role --role-name Gamelift-StartGameSession-role3 --assume-role-policy-document file://trust-policy.json
+
+aws iam attach-role-policy --policy-arn arn:aws:iam::620339869704:policy/Gamelift-StartSession-policy --role-name Gamelift-StartGameSession-role
+
+aws lambda create-function --function-name Gamelift-StartGameSession --zip-file fileb://function.zip --handler GameLiftUnreal-StartGameLiftSession.lambda_handler --runtime python3.8 --role arn:aws:iam::620339869704:role/Gamelift-StartGameSession-role
+
